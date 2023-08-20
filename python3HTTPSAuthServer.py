@@ -124,7 +124,7 @@ def build_server(ARGS):
 				sslsocketinstance = contextInstance.wrap_socket(socketinstance)
 				sslsocketinstance.connect((ARGS['ip'], ARGS['port']))
 				try:
-					print("[#] Now serving HTTP%s on %s:%s %s" % (
+					print("[#] Now serving HTTP%s on https://%s:%s %s" % (
 						"S" if ARGS['https'] else "", 
 						ARGS['ip'],
 						ARGS['port'],
