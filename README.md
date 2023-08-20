@@ -1,9 +1,8 @@
 # python3HTTPSAuthServer
-It's SimpleHTTPServer, with python3 facial hair!
+It's SimpleHTTPServer, with python3
 Supports:
   - HTTP Basic AUTH   [username:pass]
-  - HTTPS encryption
-  - Self-generates self-signed certificate, or you can bring your own
+  - HTTPS encryptioN
 
 
 `usage: python3HTTPSAuthServer.py [-h] [-i IP] [-p PORT] [-a AUTH] [-s] [-c CERT] [-k PRIVATEKEY]`  
@@ -29,8 +28,8 @@ Supports:
 ### Get Help
 `python3 -m python3HTTPSAuthServer -h`  
 
-### HTTPS via JIT self-signed certificate and HTTP Basic AUTH, port 443:
-`python3 -m python3HTTPSAuthServer -https -auth 'benzo:qu4rantyne!' -i 192.168.56.110 -p 443`
+### HTTPS Basic AUTH, port 8443:
+`python3 -m python3HTTPSAuthServer --ip yourIPaddress --auth 'username:password' --https --cert /PATH/TO/CERT/NAMEOFCERT.pem --privatekey /PATHTOKEY/NAMEOFKEY.pem`
 
 
 
