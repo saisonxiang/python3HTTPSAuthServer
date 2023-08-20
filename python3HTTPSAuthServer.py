@@ -119,7 +119,7 @@ def build_server(ARGS):
 						CERT, PEM, PUBKEY = gencert()
 				contextInstance = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 				contextInstance.verify_mode = ssl.CERT_REQUIRED
-				contextInstance.load_verify_locations('certfile=CERT, keyfile=PEM,'),
+				contextInstance.load_verify_locations('certfile=CERT, keyfile=PEM'),
 				socketinstance = socket.socket()
 				sslsocketinstance = contextInstance.wrap_socket(socketinstance)
 				sslsocketinstance.connect((ARGS['ip'], ARGS['port']))
