@@ -8,10 +8,10 @@ setuptools.setup(
     version="0.1.1",
     author="Chase Hatch",
     author_email="chase.hatch.business@gmail.com",
-    description="Python3-based http.server supporting Basic AUTH and HTTPS; it's SimpleHTTPServer with python3 facial hair! ",
+    description="Python3-based http.server supporting Basic AUTH and HTTPS; it's SimpleHTTPServer",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/SYANiDE-/python3HTTPSAuthServer",
+    url="https://github.com/saisonxiang/python3HTTPSAuthServer",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
