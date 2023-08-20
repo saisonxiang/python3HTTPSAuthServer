@@ -110,30 +110,35 @@ def build_server(ARGS):
 		else:
 				httpd = HTTPServer((ARGS['ip'], ARGS['port']), SimpleHTTPRequestHandler)
 		if ARGS['https']:
+				
 				if ARGS['cert'] and ARGS['privatekey']:
 						CERT = ARGS['cert']
 						PEM = ARGS['privatekey']
 				else:
 						global tempfiles
 						CERT, PEM, PUBKEY = gencert()
-				httpd.socket = ssl.wrap_socket (httpd.socket, certfile=CERT, keyfile=PEM, server_side=True)
-		try:
-				print("[#] Now serving HTTP%s on %s:%s %s" % (
+				contextInstance = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+				contextInstance.verify_mode = ssl.CERT_REQUIRED
+				contextInstance.load_verify_locations('certfile=CERT, keyfile=PEM'),
+				socketinstance = socket.socket()
+				sslsocketinstance = contextInstance.wrap_socket(socketinstance)
+				sslsocketinstance.connect((ARGS['ip'], ARGS['port']))
+				try:
+					print("[#] Now serving HTTP%s on %s:%s %s" % (
 						"S" if ARGS['https'] else "", 
 						ARGS['ip'],
 						ARGS['port'],
 						"with AUTH "+ARGS['auth'] if ARGS['auth'] else ""
 				))
-				print("[#] Ctrl+C to stop server\n")
-				httpd.serve_forever()
-		except TypeError:
-				pass
-		except KeyboardInterrupt:
-				if len(tempfiles) > 0:
+					print("[#] Ctrl+C to stop server\n")
+					build_server.serve_forever()
+				except TypeError:
+					pass
+				except KeyboardInterrupt:
+					if len(tempfiles) > 0:
 						for item in tempfiles:
 								os.remove(item)
 				sys.exit()
-
 
 
 def main():
